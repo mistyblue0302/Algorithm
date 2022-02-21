@@ -12,7 +12,7 @@ public class Big {
 		int array2[] = new int[max + 1];
 		int carry = 0; // 캐리
 
-		for (int index = 0, i = a.length() - 1; i >= 0; index++, i--) { // 일의자리부터(인덱스는 length()-1부터) 저장
+		for (int index = 0, i = a.length() - 1; i >= 0; index++, i--) { 
 			array[index] = a.charAt(i) - '0'; // charAt : 특정 인덱스에 위치하는 유니코드 단일문자 반환
 		}
 
