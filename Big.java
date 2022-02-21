@@ -1,5 +1,3 @@
-package ch08;
-
 import java.util.Scanner;
 import java.lang.Math;
 
@@ -9,13 +7,13 @@ public class Big {
 		String a = scanner.next();
 		String b = scanner.next();
 
-		int max = Math.max(a.length(), b.length()); // µÎ°³ÀÇ ¼ýÀÚ Áß¿¡ ±ä ¼ýÀÚÀÇ ÀÚ¸´¼ö ¹ÝÈ¯
-		int array[] = new int[max + 1]; // Å©±â¸¦ 1 Áõ°¡½ÃÅ² a ¹è¿­ »ý¼º
+		int max = Math.max(a.length(), b.length()); // ë‘ê°œì˜ ìˆ«ìž ì¤‘ì— ê¸´ ìˆ«ìžì˜ ìžë¦¿ìˆ˜ ë°˜í™˜
+		int array[] = new int[max + 1]; // í¬ê¸°ë¥¼ 1 ì¦ê°€ì‹œí‚¨ a ë°°ì—´ ìƒì„±
 		int array2[] = new int[max + 1];
-		int carry = 0; // Ä³¸®
+		int carry = 0; // ìºë¦¬
 
-		for (int index = 0, i = a.length() - 1; i >= 0; index++, i--) { // ÀÏÀÇÀÚ¸®ºÎÅÍ(ÀÎµ¦½º´Â length()-1ºÎÅÍ) ÀúÀå
-			array[index] = a.charAt(i) - '0'; // charAt : Æ¯Á¤ ÀÎµ¦½º¿¡ À§Ä¡ÇÏ´Â À¯´ÏÄÚµå ´ÜÀÏ¹®ÀÚ ¹ÝÈ¯
+		for (int index = 0, i = a.length() - 1; i >= 0; index++, i--) { // ì¼ì˜ìžë¦¬ë¶€í„°(ì¸ë±ìŠ¤ëŠ” length()-1ë¶€í„°) ì €ìž¥
+			array[index] = a.charAt(i) - '0'; // charAt : íŠ¹ì • ì¸ë±ìŠ¤ì— ìœ„ì¹˜í•˜ëŠ” ìœ ë‹ˆì½”ë“œ ë‹¨ì¼ë¬¸ìž ë°˜í™˜
 		}
 
 		for (int index = 0, i = b.length() - 1; i >= 0; index++, i--) {
@@ -23,21 +21,21 @@ public class Big {
 		}
 
 		for (int i = 0; i < max + 1; i++) {
-			int sum = array[i] + array2[i] + carry; // Ä³¸® Æ÷ÇÔ ÃÑÇÕ º¯¼ö
+			int sum = array[i] + array2[i] + carry; // ìºë¦¬ í¬í•¨ ì´í•© ë³€ìˆ˜
 			if (sum >= 10) {
 				array[i] = (array[i] + array2[i] + carry) - 10;
-				carry = 1; // Ä³¸® 1
+				carry = 1; // ìºë¦¬ 1
 			} else {
 				array[i] = (array[i] + array2[i] + carry);
-				carry = 0; // Ä³¸® 0
+				carry = 0; // ìºë¦¬ 0
 			}
 		}
 
-		if (array[max] != 0) { // array ¹è¿­ ¸¶Áö¸· ÀÎµ¦½º °ªÀÌ 0ÀÌ ¾Æ´Ï¸é
-			for (int i = max; i >= 0; i--) // max °ªºÎÅÍ ¿ª¼øÀ¸·Î Ãâ·Â
+		if (array[max] != 0) { // array ë°°ì—´ ë§ˆì§€ë§‰ ì¸ë±ìŠ¤ ê°’ì´ 0ì´ ì•„ë‹ˆë©´
+			for (int i = max; i >= 0; i--) // max ê°’ë¶€í„° ì—­ìˆœìœ¼ë¡œ ì¶œë ¥
 				System.out.print(array[i]);
-		} else { // array ¹è¿­ ¸¶Áö¸· ÀÎµ¦½º °ªÀÌ 0ÀÌ¸é
-			for (int i = max - 1; i >= 0; i--) // max-1 °ªºÎÅÍ ¿ª¼øÀ¸·Î Ãâ·Â
+		} else { // array ë°°ì—´ ë§ˆì§€ë§‰ ì¸ë±ìŠ¤ ê°’ì´ 0ì´ë©´
+			for (int i = max - 1; i >= 0; i--) // max-1 ê°’ë¶€í„° ì—­ìˆœìœ¼ë¡œ ì¶œë ¥
 				System.out.print(array[i]);
 		}
 	}
