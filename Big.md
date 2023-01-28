@@ -1,7 +1,9 @@
+```java
 import java.util.Scanner;
 import java.lang.Math;
 
-public class Big {
+public class Main {
+	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		String a = scanner.next();
@@ -40,3 +42,4 @@ public class Big {
 		}
 	}
 }
+```
