@@ -1,4 +1,3 @@
-```java
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -34,9 +33,9 @@ public class Main {
         System.out.println(sb);
     }
 }
-```
 
-```java
+
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -65,7 +64,7 @@ public class Main {
         System.out.println(sb);
     }
 }
-```
+
 
 ![img](https://github.com/dilmah0203/TIL/blob/main/Image/Arrays.sort().png)
 
