@@ -23,7 +23,6 @@ public class Main {
                 while (!stack.isEmpty()) {
                     sb.append(stack.pop());
                 }
-                sb.append(s.charAt(i));
             } else if (s.charAt(i) == '>') { //> 저장
                 flag = false;
                 sb.append(s.charAt(i));
@@ -44,8 +43,15 @@ public class Main {
                     stack.push(s.charAt(i));
                 }
             }
+
+            //반복문이 마지막 횟수일 때, 스택이 비어있지 않으면 원소 추가
+            if (i == s.length() - 1) {
+                while (!stack.isEmpty()) {
+                    sb.append(stack.pop());
+                }
+            }
         }
+        System.out.println(sb);
     }
 }
-
 
