@@ -1,39 +1,32 @@
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.Stack;
- 
+
 public class Main {
-    public static void main(String[] args) throws NumberFormatException, IOException {
-        // TODO Auto-generated method stub
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        String input = bf.readLine();
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String s = br.readLine();
+        int result = 0; //쇠막대기 조각의 총 개수
         Stack<Character> stack = new Stack<>();
- 
-        int result = 0;
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) == '(') { // 열린 괄호면 스택에 추가.
+
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(') {
                 stack.push('(');
                 continue;
             }
-            if (input.charAt(i) == ')') { // 닫힌 괄호일 경우,
-                stack.pop(); // 일단 stack에서 pop을 실행.
- 
-                if (input.charAt(i - 1) == '(') { // 그 전 괄호가 열린 괄호면 레이저를 의미.
-                    result += stack.size(); // 현재 stack의 사이즈만큼 더해 줌.
-                } else { // 그 전 괄호가 닫힌 괄호면 레이저가 아님.
-                    result++; // 단순히 1을 더해 줌.
+            if (s.charAt(i) == ')') {
+                stack.pop();
+                if (s.charAt(i - 1) == '(') { //그 전 괄호가 열린 괄호면, 레이저를 의미하므로
+                    result += stack.size(); //stack 사이즈를 더해준다.
+                } else { //그 전 괄호가 닫힌 괄호면, 레이저가 아니다.
+                    result++;
                 }
             }
         }
- 
-        bw.write(result + "\n");
-        bw.flush();
-        bf.close();
-        bw.close();
+        System.out.println(result);
     }
- 
 }
