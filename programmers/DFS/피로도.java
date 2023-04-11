@@ -1,6 +1,6 @@
 class Solution {
     static boolean[] visited;
-	static int answer = 0;
+    static int answer = 0;
     
 	public static int solution(int k, int[][] dungeons) {
 		visited = new boolean[dungeons.length];
