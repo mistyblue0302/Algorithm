@@ -36,7 +36,7 @@ public class Main {
         System.out.println(sb);
     }
 
-    public static void dfs(int depth) { // at : 시작점 변수
+    public static void dfs(int depth) { 
 
         if (depth == m) {
             for (int answer : result) {
