@@ -16,7 +16,7 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         n = Integer.parseInt(st.nextToken()); //1부터 n까지 자연수 중
-        m = Integer.parseInt(st.nextToken()); //중복 없이 m개를 고른 수열, 오름차순이어야 한다.
+        m = Integer.parseInt(st.nextToken()); //중복 없이 m개를 고른 수열, 오름차순
 
         array = new int[m];
 
@@ -24,7 +24,7 @@ public class Main {
         System.out.println(sb);
     }
 
-    public static void dfs(int depth, int at) {
+    public static void dfs(int depth, int at) { //at : 시작점 변수
 
         if (depth == m) {
             for (int result : array) {
