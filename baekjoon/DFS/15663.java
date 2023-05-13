@@ -4,8 +4,8 @@ import java.io.*;
 class Main {
 
     static int n, m;
-    static int[] array;
     static int[] result;
+    static int[] array;
     static boolean[] visit;
 
     static StringBuilder sb = new StringBuilder();
@@ -16,43 +16,44 @@ class Main {
 
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
-        array = new int[m];
+        result = new int[m];
         visit = new boolean[n];
-        result = new int[n];
+        array = new int[n];
 
         st = new StringTokenizer(br.readLine());
 
         for (int i = 0; i < n; i++) {
-            result[i] = Integer.parseInt(st.nextToken());
+            array[i] = Integer.parseInt(st.nextToken());
         }
 
-        Arrays.sort(result);
+        Arrays.sort(array);
         dfs(0);
         System.out.println(sb);
     }
 
     private static void dfs(int depth) {
         if (depth == m) {
-            for (int val : array) {
+            for (int val : result) {
                 sb.append(val).append(" ");
 
             }
             sb.append("\n");
             return;
         }
-        
+
         int before = 0; // 이전에 뽑았던 값을 저장
         for (int i = 0; i < n; i++) {
             if (visit[i]) {  // 뽑았던 값이면
                 continue;
-            } else if (before != result[i]) {
+            } else if (before != array[i]) {
                 visit[i] = true;
-                array[depth] = result[i];
-                before = result[i];
+                result[depth] = array[i];
+                before = array[i];
                 dfs(depth + 1);
                 visit[i] = false;
             }
         }
-        
+
     }
 }
+
