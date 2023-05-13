@@ -39,19 +39,20 @@ class Main {
             }
             sb.append("\n");
             return;
-        } else {
-            int before = 0; // 이전에 뽑았던 값을 저장
-            for (int i = 0; i < n; i++) {
-                if (visit[i]) {  // 뽑았던 값이면
-                    continue;
-                } else if (before != result[i]) {
-                    visit[i] = true;
-                    array[depth] = result[i];
-                    before = result[i];
-                    dfs(depth + 1);
-                    visit[i] = false;
-                }
+        }
+        
+        int before = 0; // 이전에 뽑았던 값을 저장
+        for (int i = 0; i < n; i++) {
+            if (visit[i]) {  // 뽑았던 값이면
+                continue;
+            } else if (before != result[i]) {
+                visit[i] = true;
+                array[depth] = result[i];
+                before = result[i];
+                dfs(depth + 1);
+                visit[i] = false;
             }
         }
+        
     }
 }
