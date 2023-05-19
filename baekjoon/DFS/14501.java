@@ -21,7 +21,7 @@ public class Main {
             st = new StringTokenizer(br.readLine(), " ");
             array[i][0] = Integer.parseInt(st.nextToken()); //일 수
             array[i][1] = Integer.parseInt(st.nextToken()); //이익
-  익     }
+       }
 
         dfs(0, 0);
         System.out.println(result);
