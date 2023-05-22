@@ -26,7 +26,7 @@ public class Main {
             }
         }
 
-        for (int i = 0; i < n / 2; i++) {
+        for (int i = 0; i < n / 2; i++) { //팀이 한 명 이상이기만 하면 되기 때문에 1명부터 시작하여 총 팀원 수의 반까지 올려준다.
             dfs(0, 0);
             count++;
         }
@@ -35,7 +35,7 @@ public class Main {
 
     }
 
-    public static void dfs(int at, int depth) {
+    public static void dfs(int depth, int at) {
         if (depth == count) {
             int start = 0;
             int link = 0;
@@ -59,7 +59,7 @@ public class Main {
             for (int i = at; i < n; i++) {
                 if (visit[i] == false) {
                     visit[i] = true;
-                    dfs(i + 1, depth + 1);
+                    dfs(depth+1, i + 1);
                     visit[i] = false;
                 }
             }
