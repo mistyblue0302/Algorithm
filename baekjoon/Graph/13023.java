@@ -9,7 +9,7 @@ public class Main {
     public static boolean visited[];
     public static ArrayList<Integer> list[]; //인접한 리스트
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         n = sc.nextInt(); //사람의 수
@@ -31,7 +31,7 @@ public class Main {
             visited = new boolean[n];
             dfs(0, i); //각 노드 기준 dfs 탐색 시작
         }
-        System.out.println(0); //dfs 탐색 후 규칙을 만족하지 않으면 0 출
+        System.out.println(0); //dfs 탐색 후 규칙을 만족하지 않으면 0 
     }
 
     public static void dfs(int depth, int idx) {
