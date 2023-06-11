@@ -15,12 +15,12 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
 
-        array = new int[n][n];
+        array = new int[n][n]; //n x n 크기의 나라
         group = new int[n][n]; //섬의 번호가 매겨져 저장된 배열
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                array[i][j] = sc.nextInt();
+                array[i][j] = sc.nextInt(); //0은 바다, 1은 육지
             }
         }
 
@@ -41,6 +41,7 @@ public class Main {
         System.out.println(answer);
     }
 
+    //섬에 번호 매기기(섬을 구분하기 위해)
     public static void dfs(int x, int y, int cnt) {
         group[x][y] = cnt;
 
@@ -93,9 +94,7 @@ public class Main {
                 }
             }
         }
-
         return min;
     }
 }
-
 
