@@ -33,7 +33,7 @@ public class Main { //최솟값 : bfs
                     return count;
                 }
 
-                // 화면에 있는 이모티콘이 보내려는 이모티콘보다 작은 경우에만 클리보드에서 복사해서 붙히기
+                // 클립보드에서 복사해서 붙이기(붙여넣기 하면 클립보드에 있는 이모티콘의 개수가 화면에 추가된다)
                 if (screenEmoticon < s && !visit[screenEmoticon + clipboardEmoticon][clipboardEmoticon]) {
                     visit[screenEmoticon + clipboardEmoticon][clipboardEmoticon] = true;
                     queue.add(new Emoticon(screenEmoticon + clipboardEmoticon, clipboardEmoticon));
@@ -46,7 +46,7 @@ public class Main { //최솟값 : bfs
                         queue.add(new Emoticon(screenEmoticon - 1, clipboardEmoticon));
                     }
 
-                    // 화면에서 클립보드로 복사하기 (화면 이모티콘이 보내려는 이모티콘 개수 보다 작은 경우에만 복사)
+                    // 화면에서 클립보드로 복사하기 (클립보드에 복사하면 이전의 클립보드 내용 위에 덮어쓰기가 된다)
                     if (screenEmoticon < s && !visit[screenEmoticon][screenEmoticon]) {
                         visit[screenEmoticon][screenEmoticon] = true;
                         queue.add(new Emoticon(screenEmoticon, screenEmoticon));
