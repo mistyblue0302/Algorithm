@@ -6,6 +6,25 @@ import java.util.Queue;
 
 public class Main { //최솟값 : bfs
 
+    public static class Emoticon {
+
+        private int screen;
+        private int clip;
+
+        public Emoticon(int screen, int clip) {
+            this.screen = screen;
+            this.clip = clip;
+        }
+
+        public int getScreen() {
+            return screen;
+        }
+
+        public int getClip() {
+            return clip;
+        }
+    }
+    
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -56,24 +75,5 @@ public class Main { //최솟값 : bfs
             count++;
         }
         return count;
-    }
-
-    static class Emoticon {
-
-        private int screen;
-        private int clip;
-
-        public Emoticon(int screen, int clip) {
-            this.screen = screen;
-            this.clip = clip;
-        }
-
-        public int getScreen() {
-            return screen;
-        }
-
-        public int getClip() {
-            return clip;
-        }
     }
 }
