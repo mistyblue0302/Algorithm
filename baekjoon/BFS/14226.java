@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Main { //최솟값 : bfs
+public class Main { //s개의 이모티콘을 화면에 만드는데 걸리는 시간의 최솟값
     static class Emoticon {
 
         private int screen;
@@ -37,7 +37,7 @@ public class Main { //최솟값 : bfs
         boolean visit[][] = new boolean[2000][1001]; //화면 , 클립보드
 
         Queue<Emoticon> queue = new LinkedList<>();
-        queue.add(new Emoticon(1, 0)); //현재 화면 개수, 클립보드 개수
+        queue.add(new Emoticon(1, 0)); //화면 개수, 클립보드 개수
 
         int count = 0;
         while (!queue.isEmpty()) {
@@ -50,24 +50,23 @@ public class Main { //최솟값 : bfs
                     return count;
                 }
 
-                // 화면에 있는 이모티콘이 보내려는 이모티콘보다 작은 경우에만 클리보드에서 복사해서 붙히기
-                if (screenEmoticon < s && !visit[screenEmoticon
-                    + clipboardEmoticon][clipboardEmoticon]) {
+                // 클립보드의 이모티콘을 화면에 붙여넣기(s개의 이모티콘을 만들어야 하므로 화면은 s보다 적어야함)
+                if (screenEmoticon < s && !visit[screenEmoticon + clipboardEmoticon][clipboardEmoticon]) {
                     visit[screenEmoticon + clipboardEmoticon][clipboardEmoticon] = true;
                     queue.add(new Emoticon(screenEmoticon + clipboardEmoticon, clipboardEmoticon));
                 }
 
                 if (screenEmoticon > 0) {
+                    // 화면에 있는 이모티콘을 모두 복사해서 클립보드에 저장한다. 
+                    if (screenEmoticon < s && !visit[screenEmoticon][screenEmoticon]) {
+                        visit[screenEmoticon][screenEmoticon] = true;
+                        queue.add(new Emoticon(screenEmoticon, screenEmoticon));
+                        
                     // 화면에서 한개 지우기
                     if (!visit[screenEmoticon - 1][clipboardEmoticon]) {
                         visit[screenEmoticon - 1][clipboardEmoticon] = true;
                         queue.add(new Emoticon(screenEmoticon - 1, clipboardEmoticon));
                     }
-
-                    // 화면에서 클립보드로 복사하기 (화면 이모티콘이 보내려는 이모티콘 개수 보다 작은 경우에만 복사)
-                    if (screenEmoticon < s && !visit[screenEmoticon][screenEmoticon]) {
-                        visit[screenEmoticon][screenEmoticon] = true;
-                        queue.add(new Emoticon(screenEmoticon, screenEmoticon));
                     }
                 }
             }
