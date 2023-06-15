@@ -11,10 +11,9 @@ public class Main {
     public static int[] levelMin; //각 레벨의 최소 x좌표
     public static int[] levelMax; //각 레벨의 최대 x좌표
     public static List<Node> tree = new ArrayList<>();
-    public static StringBuilder sb = new StringBuilder();
     public static int point = 1; //현재 x좌표로 노드를 방문할 때마다 1 증가
 
-    public static int max = 0; //트리의 최대 깊이
+    public static int maxLevel = 0; //트리의 최대 깊이
 
     public static class Node {
 
@@ -74,7 +73,7 @@ public class Main {
         // 완성된 levelMax[]와 levelMin[]을 가지고 값을 뽑아내기
         int answerLevel = 1;
         int answerWidth = levelMax[1] - levelMin[1] + 1;
-        for (int i = 2; i <= max; i++) {
+        for (int i = 2; i <= maxLevel; i++) {
             int width = levelMax[i] - levelMin[i] + 1;
             if (answerWidth < width) {
                 answerLevel = i;
@@ -87,8 +86,8 @@ public class Main {
     //중위 순회를 하면 방문하는 순서 그대로가 각 노드의 x좌표
     public static void inOrder(int rootIndex, int level) {
         Node node = tree.get(rootIndex);
-        if (max < level) { //트리의 최대 깊이가 레벨보다 작으면 갱신
-            max = level;
+        if (maxLevel < level) { //트리의 최대 깊이가 레벨보다 작으면 갱신
+            maxLevel = level;
         }
         if (node.left != -1) { //왼쪽
             inOrder(node.left, level + 1);
@@ -101,6 +100,6 @@ public class Main {
         if (node.right != -1) { //오른쪽
             inOrder(node.right, level + 1);
         }
-
     }
 }
+
