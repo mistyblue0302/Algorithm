@@ -39,7 +39,7 @@ public class Main {
         }
 
         visit = new boolean[v + 1];
-        dfs(1, 0);
+        dfs(1, 0); //임의의 정점 아무거나(이 문제에선 1로부터의 거리를 구한다.)
 
         visit = new boolean[v + 1];
         dfs(far, 0); //가장 멀리 있는 노드로부터 지름을 구한다.
