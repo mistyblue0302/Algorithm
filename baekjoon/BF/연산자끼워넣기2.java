@@ -36,8 +36,8 @@ public class 연산자끼워넣기2 {
         System.out.println(min);
     }
 
-    public static void dfs(int idx, int sum) {
-        if (idx == n) {
+    public static void dfs(int depth, int sum) {
+        if (depth == n) {
             min = Math.min(min, sum);
             max = Math.max(max, sum);
             return;
@@ -50,16 +50,16 @@ public class 연산자끼워넣기2 {
             operator[i]--;
             switch (i) {
                 case 0:
-                    dfs(idx + 1, sum + array[idx]);
+                    dfs(depth + 1, sum + array[depth]);
                     break;
                 case 1:
-                    dfs(idx + 1, sum - array[idx]);
+                    dfs(depth + 1, sum - array[depth]);
                     break;
                 case 2:
-                    dfs(idx + 1, sum * array[idx]);
+                    dfs(depth + 1, sum * array[depth]);
                     break;
                 case 3:
-                    dfs(idx + 1, sum / array[idx]);
+                    dfs(depth + 1, sum / array[depth]);
                     break;
             }
             operator[i]++;
