@@ -12,7 +12,8 @@ class Solution {
             여기서 i는 현재 내 위치, 즉 'X'의 index이다.
         [2]  index : 0에서 왼쪽으로 움직였다 다시 0으로 온 후, 오른쪽으로 움직인 경우
             즉, ZBZYX순으로 움직인 경우
-            (name.length() - 연속된 A가 끝나는 지점) * 2 + i **/
+            (name.length() - 연속된 A가 끝나는 지점) * 2 + i 
+        **/
         for(int i = 0; i < name.length(); i++) {
             answer += Math.min(name.charAt(i) - 'A', 26 - name.charAt(i) + 'A'); //상,하 
             if (i < move && name.charAt(i + 1) == 'A') {
