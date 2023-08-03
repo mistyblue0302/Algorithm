@@ -28,7 +28,6 @@ public class 구슬탈출2 {
         for (int i = 0; i < n; i++) {
             String s = br.readLine();
             for (int j = 0; j < m; j++) {
-                // R : 47, B: 31, O : 44, #: 0, . : 11
                 array[i][j] = s.charAt(j);
                 if (array[i][j] == 'R') {
                     rx = i;
