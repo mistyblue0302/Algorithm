@@ -55,13 +55,14 @@ public class 구슬탈출2 {
             if (c >= 10) {
                 return;
             }
+
             for (int i = 0; i < 4; i++) {
                 int nRx = temp[0];
                 int nRy = temp[1];
                 int nBx = temp[2];
                 int nBy = temp[3];
 
-                // 빨간 구슬 이동
+                // 빨간 구슬 이동 :  for 루프가 반복될 때마다 while 루프는 총 4번 실행
                 while (array[nRx + dx[i]][nRy + dy[i]] != '#') {
                     nRx += dx[i];
                     nRy += dy[i];
@@ -81,24 +82,25 @@ public class 구슬탈출2 {
 
                 // 파란 구슬이 구멍에 들어갔을 때
                 if (array[nBx][nBy] == 'O') {
-                    continue;
+                    continue; //아래의 코드들을 실행하지 않고 반복의 처음으로 돌아가 다음 반복을 시작한다.
                 }
 
+                //빨간 구슬이 구멍에 들어갔을 때
                 if (array[nRx][nRy] == 'O') {
                     min = Math.min(min, c + 1);
                     return;
                 }
 
-                // 빨간 파랑 서로 만났을 때
+                // 빨간 파랑 서로 만났을 때 : 시작 위치가 다르고 둘중 하나가 벽을 만날수 있기 때문에
                 if (nRx == nBx && nRy == nBy && array[nRx][nRy] != 'O') {
                     int red_move = Math.abs(nRx - temp[0]) + Math.abs(nRy - temp[1]);
                     int blue_move = Math.abs(nBx - temp[2]) + Math.abs(nBy - temp[3]);
 
-                    // 파란 공이 더 빨리 도착한 경우
+                    // 파란 공이 더 빨리 도착한 경우 : 전의 위치로 이동
                     if (red_move > blue_move) {
                         nRx -= dx[i];
                         nRy -= dy[i];
-                    } else { // 빨간 공이 더 빨리 도착한 경우
+                    } else { // 빨간 공이 더 빨리 도착한 경우 : 전의 위치로 이동
                         nBx -= dx[i];
                         nBy -= dy[i];
                     }
