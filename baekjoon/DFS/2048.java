@@ -6,7 +6,6 @@ public class Main {
     static int n;
     static int[][] array;
     static int max;
-    static int[][] direction = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
