@@ -7,6 +7,13 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
 public class 말이되고픈원숭이 {
 
     static int k, w, h;
@@ -21,8 +28,8 @@ public class 말이되고픈원숭이 {
         k = Integer.parseInt(br.readLine());
 
         StringTokenizer st = new StringTokenizer(br.readLine());
-        w = Integer.parseInt(st.nextToken());
-        h = Integer.parseInt(st.nextToken());
+        w = Integer.parseInt(st.nextToken()); //5
+        h = Integer.parseInt(st.nextToken()); //2
 
         array = new int[h][w];
 
@@ -37,20 +44,20 @@ public class 말이되고픈원숭이 {
     }
 
     public static int bfs(int x, int y) {
-        Queue<int[]> q = new LinkedList<>();
+        Queue<int[]> queue = new LinkedList<>();
         boolean[][][] visited = new boolean[h][w][k + 1];
 
-        visited[y][x][0] = true;
-        q.add(new int[]{x, y, 0, 0});
-        while (!q.isEmpty()) {
-            int[] pos = q.poll();
+        visited[x][y][0] = true;
+        queue.add(new int[]{x, y, 0, 0});
+        while (!queue.isEmpty()) {
+            int[] pos = queue.poll();
             int cx = pos[0];
             int cy = pos[1];
             int horse = pos[2]; //말 이동 찬스
             int move = pos[3]; //총 이동 횟수
 
             //도착지점에서 총 이동 횟수를 리턴
-            if (cx == w - 1 && cy == h - 1) {
+            if (cx == h - 1 && cy == w - 1) {
                 return move;
             }
 
@@ -59,16 +66,16 @@ public class 말이되고픈원숭이 {
                 int nx = cx + dx[i];
                 int ny = cy + dy[i];
 
-                if (nx < 0 || nx > w - 1 || ny < 0 || ny > h - 1) {
+                if (nx < 0 || nx > h - 1 || ny < 0 || ny > w - 1) {
                     continue;
                 }
-                if (visited[ny][nx][horse]) { //내가 가려는 곳에 이미 방문했다면, 나보다 빠른 것
+                if (visited[nx][ny][horse]) { //내가 가려는 곳에 이미 방문했다면, 나보다 빠른 것
                     continue;
                 }
 
-                if (array[ny][nx] != 1) { //벽이 아니라면
-                    visited[ny][nx][horse] = true;
-                    q.add(new int[]{nx, ny, horse, move + 1});
+                if (array[nx][ny] != 1) { //벽이 아니라면
+                    visited[nx][ny][horse] = true;
+                    queue.add(new int[]{nx, ny, horse, move + 1});
                 }
             }
 
@@ -78,16 +85,16 @@ public class 말이되고픈원숭이 {
                     int nx = cx + hx[i];
                     int ny = cy + hy[i];
 
-                    if (nx < 0 || nx > w - 1 || ny < 0 || ny > h - 1) {
+                    if (nx < 0 || nx > h - 1 || ny < 0 || ny > w - 1) {
                         continue;
                     }
-                    if (visited[ny][nx][horse + 1]) {
+                    if (visited[nx][ny][horse + 1]) {
                         continue;
                     }
 
-                    if (array[ny][nx] != 1) {
-                        visited[ny][nx][horse + 1] = true;
-                        q.add(new int[]{nx, ny, horse + 1, move + 1});
+                    if (array[nx][ny] != 1) {
+                        visited[nx][ny][horse + 1] = true;
+                        queue.add(new int[]{nx, ny, horse + 1, move + 1});
                     }
                 }
             }
