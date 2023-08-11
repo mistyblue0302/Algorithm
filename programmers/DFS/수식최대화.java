@@ -29,15 +29,15 @@ public class 수식최대화 {
         return answer;
     }
 
-    public void dfs(int count, char[] p) {
+    public void dfs(int count, char[] ch) {
         if (count == 3) {
             ArrayList<Long> copyNumbers = new ArrayList<>(numbers);
             ArrayList<Character> copyOperands = new ArrayList<>(operands);
 
-            for (int i = 0; i < p.length; i++) {
+            for (int i = 0; i < ch.length; i++) {
                 for (int j = 0; j < copyOperands.size(); j++) {
-                    if (copyOperands.get(j) == p[i]) {
-                        Long temp = calc(copyNumbers.remove(j), copyNumbers.remove(j), p[i]);
+                    if (copyOperands.get(j) == ch[i]) {
+                        Long temp = calc(copyNumbers.remove(j), copyNumbers.remove(j), ch[i]);
                         copyNumbers.add(j, temp);
                         copyOperands.remove(j);
                         j--;
@@ -51,8 +51,8 @@ public class 수식최대화 {
         for (int i = 0; i < 3; i++) {
             if (!visited[i]) {
                 visited[i] = true;
-                p[count] = operand[i];
-                dfs(count + 1, p);
+                ch[count] = operand[i];
+                dfs(count + 1, ch);
                 visited[i] = false;
             }
         }
