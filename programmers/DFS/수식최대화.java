@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class 수식최대화 {
 
-    char[] operand = {'+', '-', '*'};
-    boolean[] visited = new boolean[3];
-    ArrayList<Long> numbers = new ArrayList<>();
-    ArrayList<Character> operands = new ArrayList<>();
+    static char[] operand = {'+', '-', '*'};
+    static boolean[] visited = new boolean[3];
+    static ArrayList<Long> numbers = new ArrayList<>();
+    static ArrayList<Character> operands = new ArrayList<>();
     long answer = 0;
 
     public long solution(String expression) {
