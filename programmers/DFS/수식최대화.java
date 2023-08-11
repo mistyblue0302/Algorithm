@@ -6,14 +6,11 @@ public class 수식최대화 {
 
     char[] operand = {'+', '-', '*'};
     boolean[] visited = new boolean[3];
-    ArrayList<Long> numbers;
-    ArrayList<Character> operands;
-    long answer;
+    ArrayList<Long> numbers = new ArrayList<>();
+    ArrayList<Character> operands = new ArrayList<>();
+    long answer = 0;
 
     public long solution(String expression) {
-        numbers = new ArrayList<>();
-        operands = new ArrayList<>();
-        answer = 0;
 
         String num = "";
         for (int i = 0; i < expression.length(); i++) {
@@ -73,4 +70,4 @@ public class 수식최대화 {
         }
     }
 }
-}
+
