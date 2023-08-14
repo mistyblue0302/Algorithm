@@ -9,7 +9,7 @@ class 순위검색 {
         int[] answer = new int[query.length];
 
         for (int i = 0; i < info.length; i++) {
-            String[] s = info[i].split(" "); //java backend junior pizza 150
+            String[] s = info[i].split(" ");
             makeQuery(s, 0, "");
         }
 
@@ -44,7 +44,7 @@ class 순위검색 {
     public static void makeQuery(String[] s, int count, String str) {
         if (count == 4) {
             if (!map.containsKey(str)) {
-                List<Integer> list = new ArrayList<Integer>();
+                List<Integer> list = new ArrayList<>();
                 map.put(str, list);
             }
             map.get(str).add(Integer.parseInt(s[4]));
