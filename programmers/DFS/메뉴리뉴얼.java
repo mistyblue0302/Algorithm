@@ -24,14 +24,13 @@ class 메뉴리뉴얼 {
         //orders를 기준으로 course 길이 만큼의 조합 만들기
         for (int courses : course) {
             for (String order : orders) {
-                combination("", order, courses); //먼저 조합을 다 만들고
+                combination("", order, courses); //먼저 courses 길이만큼 조합을 다 만들고
             }
-            //가장 많은 조합 저장
-            if (!map.isEmpty()) { //조합이 하나라도 만들어 졌다면
+            if (!map.isEmpty()) { //조합의 길이가 같은 것 들 중에서
                 List<Integer> countList = new ArrayList<>(map.values());
                 int max = Collections.max(countList);
                 if (max > 1) { //최소 2명 이상의 손님으로부터 주문된 메뉴인지 판단하고 리스트에 추가한다.
-                    for (String key : map.keySet()) {
+                    for (String key : map.keySet()) { //같은 값이 두 개 이상 있을 수 있기 때문에 키를 다 순회
                         if (map.get(key) == max) {
                             list.add(key);
                         }
