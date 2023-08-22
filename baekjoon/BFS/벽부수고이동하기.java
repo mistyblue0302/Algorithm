@@ -57,13 +57,13 @@ public class 벽부수고이동하기 {
                     continue;
                 }
 
-                if (array[nx][ny] == 1) {
+                if (array[nx][ny] == 1) { //다음에 벽이 있을 때
                     if (w == 0 && !visited[nx][ny][1]) {
                         visited[nx][ny][w] = true;    // 방문 처리
                         distance[nx][ny] = distance[x][y] + 1; // 거리 측정
                         queue.offer(new int[]{nx, ny, 1});
                     }
-                } else {
+                } else { //다음에 벽이 없을 때
                     if (!visited[nx][ny][w]) {
                         visited[nx][ny][w] = true;
                         distance[nx][ny] = distance[x][y] + 1;
