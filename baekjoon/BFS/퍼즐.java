@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 
 public class 퍼즐 {
 
-    static String corrcet = "123456780";
+    static String correct = "123456780";
     static int[] dx = {-1, 0, 1, 0};
     static int[] dy = {0, 1, 0, -1};
     static Map<String, Integer> map = new HashMap<>();
@@ -44,7 +44,7 @@ public class 퍼즐 {
             int cx = empty % 3; //1 열위치
             int cy = empty / 3; //0 행위치
 
-            if (temp.equals(corrcet)) {
+            if (temp.equals(correct)) {
                 return move;
             }
 
