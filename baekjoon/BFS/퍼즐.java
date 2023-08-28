@@ -38,9 +38,9 @@ public class 퍼즐 {
         queue.add(s);
 
         while (!queue.isEmpty()) {
-            String temp = queue.poll(); //103425786
-            int move = map.get(temp); //0
-            int empty = temp.indexOf('0'); //비어있는 칸 찾기 : 1
+            String temp = queue.poll();
+            int move = map.get(temp);
+            int empty = temp.indexOf('0');
             int cx = empty % 3; //1 열위치
             int cy = empty / 3; //0 행위치
 
@@ -49,8 +49,8 @@ public class 퍼즐 {
             }
 
             for (int i = 0; i < 4; i++) {
-                int nx = cx + dx[i]; //열
-                int ny = cy + dy[i]; //행
+                int nx = cx + dx[i];
+                int ny = cy + dy[i];
 
                 if (nx < 0 || nx > 2 || ny < 0 || ny > 2) {
                     continue;
