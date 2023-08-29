@@ -1,7 +1,5 @@
-import java.util.*;
 
-class Solution
-{
+class 가장 큰 정사각형 찾기 {
     public int solution(int [][]board)
     {
         int answer = 0;
