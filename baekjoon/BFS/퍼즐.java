@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 
 public class 퍼즐 {
 
-    static String corrcet = "123456780";
+    static String correct = "123456780";
     static int[] dx = {-1, 0, 1, 0};
     static int[] dy = {0, 1, 0, -1};
     static Map<String, Integer> map = new HashMap<>();
@@ -38,19 +38,19 @@ public class 퍼즐 {
         queue.add(s);
 
         while (!queue.isEmpty()) {
-            String temp = queue.poll(); //103425786
-            int move = map.get(temp); //0
-            int empty = temp.indexOf('0'); //비어있는 칸 찾기 : 1
+            String temp = queue.poll();
+            int move = map.get(temp);
+            int empty = temp.indexOf('0');
             int cx = empty % 3; //1 열위치
             int cy = empty / 3; //0 행위치
 
-            if (temp.equals(corrcet)) {
+            if (temp.equals(correct)) {
                 return move;
             }
 
             for (int i = 0; i < 4; i++) {
-                int nx = cx + dx[i]; //열
-                int ny = cy + dy[i]; //행
+                int nx = cx + dx[i];
+                int ny = cy + dy[i];
 
                 if (nx < 0 || nx > 2 || ny < 0 || ny > 2) {
                     continue;
