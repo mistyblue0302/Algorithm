@@ -13,7 +13,6 @@ public class 파일합치기3 {
         int n = Integer.parseInt(br.readLine());
         StringTokenizer st;
 
-        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < n; i++) {
             PriorityQueue<Long> queue = new PriorityQueue<>();
             int num = Integer.parseInt(br.readLine());
