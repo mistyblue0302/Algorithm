@@ -33,19 +33,19 @@ class 카카오프렌즈컬러링북 {
     }
 
 
-    static void dfs(int r, int c, int m, int n, int[][] picture) {
-        visited[r][c] = true;
+    static void dfs(int x, int y, int m, int n, int[][] picture) {
+        visited[x][y] = true;
         size++;
         for (int i = 0; i < 4; i++) {
-            int nc = c + dx[i];
-            int nr = r + dy[i];
+            int cx = y + dx[i];
+            int cy = x + dy[i];
 
-            if (0 > nr || nr >= m || 0 > nc || nc >= n || visited[nr][nc]) {
+            if (0 > cy || cy >= m || 0 > cx || cx >= n || visited[cy][cx]) {
                 continue;
             }
 
-            if (picture[r][c] == picture[nr][nc]) {
-                dfs(nr, nc, m, n, picture);
+            if (picture[x][y] == picture[cy][cx]) {
+                dfs(cy, cx, m, n, picture);
             }
         }
     }
