@@ -1,5 +1,3 @@
-package DFS;
-
 class 배달 {
     public int solution(int N, int[][] road, int K) {
         int answer = 0;
