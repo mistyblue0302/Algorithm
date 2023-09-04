@@ -22,7 +22,7 @@ class 배달 {
         for(int i = 1; i <= N; i++) {
             for(int j = 1; j <= N; j++) {
                 for(int k = 1; k <= N; k++) {
-                    cost[j][k] = Math.min(cost[j][k], cost[j][i] +  cost[i][k]);
+                    cost[j][k] = Math.min(cost[j][k], cost[j][i] +  cost[i][k]); //j부터 k까지 갈 때 j가 i를 경유
                 }
             }
         }
