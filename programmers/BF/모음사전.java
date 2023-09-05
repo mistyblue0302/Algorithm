@@ -8,11 +8,8 @@ class 모음사전 {
 
     public int solution(String word) {
         int answer = 0;
-
-        //완전탐색 메서드 호출
         recursion(word, "", 0);
 
-        //선형 탐색
         for (int i = 0; i < list.size(); i++) {
             if(list.get(i).equals(word)) {
                 answer = i;
