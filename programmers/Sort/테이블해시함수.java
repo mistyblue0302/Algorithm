@@ -13,7 +13,7 @@ class 테이블해시함수 {
 
         for (int i = row_begin - 1; i < row_end; i++) {
             int sum = 0;
-            for (int row : data[i]) { //2 2 6
+            for (int row : data[i]) {
                 sum += (row % (i + 1));
             }
             answer = answer ^ sum;
