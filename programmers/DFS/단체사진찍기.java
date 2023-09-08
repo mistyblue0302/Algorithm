@@ -2,8 +2,8 @@ package DFS;
 
 class 단체사진찍기 {
 
-    public boolean[] visited= new boolean[8];
-    public char[] array = new char[]{'A', 'C', 'F', 'J', 'M', 'N', 'R', 'T'};;
+    public boolean[] visited = new boolean[8];
+    public char[] array = new char[]{'A', 'C', 'F', 'J', 'M', 'N', 'R', 'T'};
     public String[] s;
     public int answer = 0;
 
@@ -22,7 +22,7 @@ class 단체사진찍기 {
         }
 
         for (int i = 0; i < array.length; i++) {
-            if(!visited[i]) {
+            if (!visited[i]) {
                 visited[i] = true;
                 dfs(str + array[i], len + 1);
                 visited[i] = false;
@@ -48,4 +48,5 @@ class 단체사진찍기 {
         }
         return true;
     }
+}
 

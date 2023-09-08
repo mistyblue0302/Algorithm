@@ -56,18 +56,18 @@ public class 불 {
             // 불을 퍼뜨리기
             int fireSize = fire.size();
             for (int i = 0; i < fireSize; i++) {
-                int[] firePos = fire.poll();
-                int fx = firePos[0];
-                int fy = firePos[1];
+                int[] temp = fire.poll();
+                int x = temp[0];
+                int y = temp[1];
 
                 for (int j = 0; j < 4; j++) {
-                    int fxNext = fx + dx[j];
-                    int fyNext = fy + dy[j];
+                    int cx = x + dx[j];
+                    int cy = y + dy[j];
 
-                    if (fxNext >= 0 && fxNext < h && fyNext >= 0 && fyNext < w
-                        && array[fxNext][fyNext] == '.') {
-                        array[fxNext][fyNext] = '*';
-                        fire.add(new int[]{fxNext, fyNext});
+                    if (cx >= 0 && cx < h && cy >= 0 && cy < w
+                        && array[cx][cy] == '.') {
+                        array[cx][cy] = '*';
+                        fire.add(new int[]{cx, cy});
                     }
                 }
             }
@@ -75,22 +75,22 @@ public class 불 {
             // 상근이 이동
             int size = queue.size();
             for (int i = 0; i < size; i++) {
-                int[] pos = queue.poll();
-                int x = pos[0];
-                int y = pos[1];
-                int time = pos[2];
+                int[] temp = queue.poll();
+                int x = temp[0];
+                int y = temp[1];
+                int time = temp[2];
 
                 for (int j = 0; j < 4; j++) {
-                    int xNext = x + dx[j];
-                    int yNext = y + dy[j];
+                    int cx = x + dx[j];
+                    int cy = y + dy[j];
 
-                    if (xNext < 0 || xNext >= h || yNext < 0 || yNext >= w) {
+                    if (cx < 0 || cx >= h || cy < 0 || cy >= w) {
                         return time + 1; // 탈출 성공
                     }
 
-                    if (array[xNext][yNext] == '.' && !visited[xNext][yNext]) {
-                        visited[xNext][yNext] = true;
-                        queue.add(new int[]{xNext, yNext, time + 1});
+                    if (array[cx][cy] == '.' && !visited[cx][cy]) {
+                        visited[cx][cy] = true;
+                        queue.add(new int[]{cx, cy, time + 1});
                     }
                 }
             }
@@ -99,3 +99,4 @@ public class 불 {
         return -1; // 탈출 실패
     }
 }
+
