@@ -1,0 +1,101 @@
+package BFS;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+public class 불 {
+
+    static int t;
+    static int w, h;
+    static char[][] array;
+    static boolean[][] visited;
+    static int[] dx = {-1, 0, 1, 0};
+    static int[] dy = {0, 1, 0, -1};
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        t = Integer.parseInt(br.readLine());
+
+        while (t-- > 0) {
+            StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+            w = Integer.parseInt(st.nextToken());
+            h = Integer.parseInt(st.nextToken());
+            array = new char[h][w];
+            visited = new boolean[h][w];
+
+            Queue<int[]> queue = new LinkedList<>();
+            Queue<int[]> fire = new LinkedList<>();
+
+            for (int i = 0; i < h; i++) {
+                String s = br.readLine();
+                for (int j = 0; j < w; j++) {
+                    array[i][j] = s.charAt(j);
+                    if (array[i][j] == '@') {
+                        queue.add(new int[]{i, j, 0}); // 시작 지점을 큐에 저장
+                    } else if (array[i][j] == '*') {
+                        fire.add(new int[]{i, j});
+                    }
+                }
+            }
+
+            int result = bfs(queue, fire);
+            if (result == -1) {
+                System.out.println("IMPOSSIBLE");
+            } else {
+                System.out.println(result);
+            }
+        }
+    }
+
+    public static int bfs(Queue<int[]> queue, Queue<int[]> fire) {
+        while (!queue.isEmpty()) {
+            // 불을 퍼뜨리기
+            int fireSize = fire.size();
+            for (int i = 0; i < fireSize; i++) {
+                int[] firePos = fire.poll();
+                int fx = firePos[0];
+                int fy = firePos[1];
+
+                for (int j = 0; j < 4; j++) {
+                    int fxNext = fx + dx[j];
+                    int fyNext = fy + dy[j];
+
+                    if (fxNext >= 0 && fxNext < h && fyNext >= 0 && fyNext < w
+                        && array[fxNext][fyNext] == '.') {
+                        array[fxNext][fyNext] = '*';
+                        fire.add(new int[]{fxNext, fyNext});
+                    }
+                }
+            }
+
+            // 상근이 이동
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int[] pos = queue.poll();
+                int x = pos[0];
+                int y = pos[1];
+                int time = pos[2];
+
+                for (int j = 0; j < 4; j++) {
+                    int xNext = x + dx[j];
+                    int yNext = y + dy[j];
+
+                    if (xNext < 0 || xNext >= h || yNext < 0 || yNext >= w) {
+                        return time + 1; // 탈출 성공
+                    }
+
+                    if (array[xNext][yNext] == '.' && !visited[xNext][yNext]) {
+                        visited[xNext][yNext] = true;
+                        queue.add(new int[]{xNext, yNext, time + 1});
+                    }
+                }
+            }
+        }
+
+        return -1; // 탈출 실패
+    }
+}
