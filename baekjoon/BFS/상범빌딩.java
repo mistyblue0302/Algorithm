@@ -28,11 +28,11 @@ public class 상범빌딩 {
             int end_y = 0;
             int end_z = 0;
 
-            int L = Integer.parseInt(st.nextToken());
-            int R = Integer.parseInt(st.nextToken());
-            int C = Integer.parseInt(st.nextToken());
+            int L = Integer.parseInt(st.nextToken()); //층수
+            int R = Integer.parseInt(st.nextToken()); //행
+            int C = Integer.parseInt(st.nextToken()); //열
 
-            if (L == 0 && R == 0 && C == 0)
+            if (L == 0 && R == 0 && C == 0) //입력의 끝
                 break;
 
             array = new char[L][R][C];
@@ -42,12 +42,12 @@ public class 상범빌딩 {
                 for (int j = 0; j < R; j++) {
                     String s = br.readLine();
                     for (int k = 0; k < C; k++) {
-                        if (s.charAt(k) == 'S') {
+                        if (s.charAt(k) == 'S') { //시작 지점
                             start_x = j;
                             start_y = k;
                             start_z = i;
                         }
-                        if (s.charAt(k) == 'E') {
+                        if (s.charAt(k) == 'E') { //탈출구
                             end_x = j;
                             end_y = k;
                             end_z = i;
@@ -59,7 +59,7 @@ public class 상범빌딩 {
             }
 
             Queue<int[]> q = new LinkedList<>();
-            q.offer(new int[]{start_z, start_x, start_y});
+            q.offer(new int[]{start_z, start_x, start_y}); //시작 지점의 층수, 행, 열 저장
 
             while (!q.isEmpty()) {
                 int[] temp = q.poll();
@@ -74,7 +74,7 @@ public class 상범빌딩 {
 
                     if (nx < 0 || ny < 0 || nz < 0 || nx >= R || ny >= C || nz >= L) continue;
 
-                    if (array[nz][nx][ny] == '#' || distance[nz][nx][ny] != 0) continue;
+                    if (array[nz][nx][ny] == '#' || distance[nz][nx][ny] != 0) continue; //막혀있어 지나갈 수 없거나 이미 방문한 경우
 
                     q.offer(new int[]{nz, nx, ny});
                     distance[nz][nx][ny] = distance[z][x][y] + 1;
