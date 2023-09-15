@@ -35,7 +35,7 @@ public class 불 {
                 for (int j = 0; j < w; j++) {
                     array[i][j] = s.charAt(j);
                     if (array[i][j] == '@') {
-                        queue.add(new int[]{i, j, 0}); // 시작 지점을 큐에 저장
+                        queue.add(new int[]{i, j, 0}); //시작 지점을 큐에 저장
                     } else if (array[i][j] == '*') {
                         fire.add(new int[]{i, j});
                     }
@@ -53,7 +53,7 @@ public class 불 {
 
     public static int bfs(Queue<int[]> queue, Queue<int[]> fire) {
         while (!queue.isEmpty()) {
-            // 불을 퍼뜨리기
+            //불을 퍼뜨리기
             int fireSize = fire.size();
             for (int i = 0; i < fireSize; i++) {
                 int[] temp = fire.poll();
@@ -64,15 +64,14 @@ public class 불 {
                     int cx = x + dx[j];
                     int cy = y + dy[j];
 
-                    if (cx >= 0 && cx < h && cy >= 0 && cy < w
-                        && array[cx][cy] == '.') {
+                    if (cx >= 0 && cx < h && cy >= 0 && cy < w && array[cx][cy] == '.') {
                         array[cx][cy] = '*';
                         fire.add(new int[]{cx, cy});
                     }
                 }
             }
 
-            // 상근이 이동
+            //상근이 이동
             int size = queue.size();
             for (int i = 0; i < size; i++) {
                 int[] temp = queue.poll();
@@ -84,12 +83,12 @@ public class 불 {
                     int cx = x + dx[j];
                     int cy = y + dy[j];
 
-                    if (cx < 0 || cx >= h || cy < 0 || cy >= w) {
-                        return time + 1; // 탈출 성공
+                    if (cx < 0 || cx >= h || cy < 0 || cy >= w) { //밖을 벗어났다면
+                        return time + 1; //탈출 성공, 0초에서 시작했기 때문에 + 1
                     }
 
-                    if (array[cx][cy] == '.' && !visited[cx][cy]) {
-                        visited[cx][cy] = true;
+                    if (array[cx][cy] == '.' && !visited[cx][cy]) { //빈공간이고 방문하지 않았다면
+                        visited[cx][cy] = true; //방문 처리를 해줘야 최단 거리를 구할 수 있다.
                         queue.add(new int[]{cx, cy, time + 1});
                     }
                 }
