@@ -10,9 +10,9 @@ import java.util.StringTokenizer;
 public class 상범빌딩 {
     static char array[][][];
     static int distance[][][];
-    static int[] dx = {-1, 0, 1, 0,0,0};
-    static int[] dy = {0, 1, 0, -1,0,0};
-    static int[] dz = {0, 0, 0, 0,-1, 1};
+    static int[] dx = {-1, 0, 1, 0, 0, 0};
+    static int[] dy = {0, 1, 0, -1, 0, 0};
+    static int[] dz = {0, 0, 0, 0, -1, 1};
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -32,7 +32,7 @@ public class 상범빌딩 {
             int R = Integer.parseInt(st.nextToken());
             int C = Integer.parseInt(st.nextToken());
 
-            if(L==0 && R==0 && C==0)
+            if (L == 0 && R == 0 && C == 0)
                 break;
 
             array = new char[L][R][C];
@@ -84,9 +84,9 @@ public class 상범빌딩 {
 
             int ans = distance[end_z][end_x][end_y];
 
-            if(ans== 0)
+            if (ans == 0)
                 System.out.println("Trapped!");
-            else{
+            else {
                 System.out.println("Escaped in " + ans + " minute(s).");
             }
         }
