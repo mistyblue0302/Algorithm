@@ -12,7 +12,7 @@ public class 열쇠 {
     static int t, h, w, key;
     static int max;
     static char[][] array;
-    static boolean[][][] visited; // visited 배열을 3차원 배열로 변경
+    static int[][] visited;
     static int[] dx = {-1, 0, 1, 0};
     static int[] dy = {0, 1, 0, -1};
 
@@ -25,16 +25,14 @@ public class 열쇠 {
             h = Integer.parseInt(st.nextToken());
             w = Integer.parseInt(st.nextToken());
 
-            key = 0; // key에 대한 정보
-            max = 0; // 문서의 최대 개수
-            array = new char[102][102]; // 빌딩의 밖에 있고, 가장자리 벽이 아닌 곳을 통해 빌딩을 드나들어야 하기 때문
-            visited = new boolean[102][102][64]; // visited 배열을 3차원 배열로 변경, 64는 모든 열쇠 비트를 표현하기 위한 크기
+            key = 0; //key에 대한 정보
+            max = 0; //문서의 최대 개수
+            array = new char[102][102]; //빌딩의 밖에 있고, 가장자리 벽이 아닌 곳을 통해 빌딩을 드나들어야 하기 때문
+            visited = new int[102][102];
 
             for (int i = 0; i <= h + 1; i++) {
                 for (int j = 0; j <= w + 1; j++) {
-                    for (int k = 0; k < 64; k++) { // 모든 열쇠 비트 초기화
-                        visited[i][j][k] = false;
-                    }
+                    visited[i][j] = -1;
                 }
             }
 
@@ -45,7 +43,7 @@ public class 열쇠 {
                 }
             }
 
-            String keyInput = br.readLine(); // 만약 keysrk "rc"일 경우 'r'과 'c' 두 문자를 처리하여 key 비트를 업데이트
+            String keyInput = br.readLine(); // 만약 keyInput이 "rc"일 경우 'r'과 'c' 두 문자를 처리하여 key 비트를 업데이트
             if (!keyInput.equals("0")) {
                 char[] c = keyInput.toCharArray();
                 for (int i = 0; i < c.length; i++) {
@@ -62,7 +60,7 @@ public class 열쇠 {
     public static void bfs() {
         Queue<int[]> queue = new LinkedList<>();
 
-        visited[0][0][key] = true; // 빌딩의 밖에서 출발, key 비트를 사용하여 방문 여부 표시
+        visited[0][0] = key; //빌딩의 밖에서 출발
         queue.add(new int[]{0, 0});
 
         while (!queue.isEmpty()) {
@@ -75,12 +73,12 @@ public class 열쇠 {
                 int cy = y + dy[i];
 
                 if (cx < 0 || cx >= h + 2 || cy < 0 || cy >= w + 2 || array[cx][cy] == '*'
-                    || visited[cx][cy][key]) { // 방문 여부를 key 비트로 체크
+                    || visited[cx][cy] == key) { //벽이 아닌 곳을 통해 빌딩 밖과 안을 드나들 수 있다.
                     continue;
                 }
 
-                visited[cx][cy][key] = true; // 방문 여부를 key 비트로 표시
-                if (array[cx][cy] >= 'A' && array[cx][cy] <= 'Z') { // 해당 알파벳으로 표시된 문을 열기 위한 열쇠가
+                visited[cx][cy] = key;
+                if (array[cx][cy] >= 'A' && array[cx][cy] <= 'Z') { // 문을 만나면 해당 알파벳으로 표시된 문을 열기 위한 열쇠가
                     if ((key & (1 << array[cx][cy] - 65)) == 0) { // key 변수에 있는지 확인
                         continue; // 없으면 continue를 통해 다음 반복 진행
                     }
@@ -90,10 +88,9 @@ public class 열쇠 {
                     max++;
                 }
 
-                array[cx][cy] = '.'; // 지나온 경로를 표시하기 위해 빈 공간으로 바꾼다. 더 이상 방문할 필요가 없기 때문
+                array[cx][cy] = '.'; // 지나온 경로를 표시하기 위해 빈 공간으로 바꾼다. 열쇠는 여러 번 사용할 수 있기 때문에 한 번 연 곳은 빈칸 처리
                 queue.add(new int[]{cx, cy});
             }
         }
     }
 }
-
