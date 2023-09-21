@@ -9,90 +9,93 @@ import java.util.StringTokenizer;
 
 public class 불 {
 
-    static int r, c;
+    static int t;
+    static int w, h;
     static char[][] array;
     static boolean[][] visited;
-    static boolean[][] fireVisited;
     static int[] dx = {-1, 0, 1, 0};
     static int[] dy = {0, 1, 0, -1};
-    static Queue<int[]> queue = new LinkedList<>();
-    static Queue<int[]> fire = new LinkedList<>();
-    static int time = 0;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        r = Integer.parseInt(st.nextToken());
-        c = Integer.parseInt(st.nextToken());
-        array = new char[r][c];
-        visited = new boolean[r][c];
-        fireVisited = new boolean[r][c];
+        t = Integer.parseInt(br.readLine());
 
-        for (int i = 0; i < r; i++) {
-            String s = br.readLine();
-            for (int j = 0; j < c; j++) {
-                array[i][j] = s.charAt(j);
-                if (array[i][j] == 'J') {
-                    queue.add(new int[]{i, j});
-                    array[i][j] = '.';
-                    visited[i][j] = true;
-                } else if (array[i][j] == 'F') {
-                    fire.add(new int[]{i, j});
-                    fireVisited[i][j] = true;
+        while (t-- > 0) {
+            StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+            w = Integer.parseInt(st.nextToken());
+            h = Integer.parseInt(st.nextToken());
+            array = new char[h][w];
+            visited = new boolean[h][w];
+
+            Queue<int[]> queue = new LinkedList<>();
+            Queue<int[]> fire = new LinkedList<>();
+
+            for (int i = 0; i < h; i++) {
+                String s = br.readLine();
+                for (int j = 0; j < w; j++) {
+                    array[i][j] = s.charAt(j);
+                    if (array[i][j] == '@') {
+                        queue.add(new int[]{i, j, 0}); //시작 지점을 큐에 저장
+                    } else if (array[i][j] == '*') {
+                        fire.add(new int[]{i, j});
+                    }
                 }
             }
-        }
 
-        bfs();
-        System.out.println("IMPOSSIBLE");
+            int result = bfs(queue, fire);
+            if (result == -1) {
+                System.out.println("IMPOSSIBLE");
+            } else {
+                System.out.println(result);
+            }
+        }
     }
 
-    public static void bfs() {
-
+    public static int bfs(Queue<int[]> queue, Queue<int[]> fire) {
         while (!queue.isEmpty()) {
-            int size = queue.size();
-            int size2 = fire.size();
-
-            for(int i = 0; i < size2; i++) {
-                int[] temp = fire.poll(); //불
+            //불을 퍼뜨리기
+            int fireSize = fire.size();
+            for (int i = 0; i < fireSize; i++) {
+                int[] temp = fire.poll();
                 int x = temp[0];
                 int y = temp[1];
 
-                for (int j = 0; j < 4; j++) { //불이 움직이는 위치(벽이 있는 공간은 통과하지 못한다.)
+                for (int j = 0; j < 4; j++) {
                     int cx = x + dx[j];
                     int cy = y + dy[j];
-                    if (cx < 0 || cx >= r || cy < 0 || cy >= c || fireVisited[cx][cy]
-                        || array[cx][cy] == '#') {
-                        continue;
+
+                    if (cx >= 0 && cx < h && cy >= 0 && cy < w && array[cx][cy] == '.') {
+                        array[cx][cy] = '*';
+                        fire.add(new int[]{cx, cy});
                     }
-                    fireVisited[cx][cy] = true;
-                    array[cx][cy] = 'F';
-                    fire.add(new int[]{cx, cy});
                 }
             }
 
-            for(int i = 0; i < size; i++) {
-                int[] temp2 = queue.poll();
-                int x2 = temp2[0];
-                int y2 = temp2[1];
-                for (int k = 0; k < 4; k++) { //지훈이가 움직이는 위치(벽이 있는 공간은 통과하지 못한다.)
-                    int cx = x2 + dx[k];
-                    int cy = y2 + dy[k];
-                    if (cx < 0 || cx >= r || cy < 0 || cy >= c) {
-                        time++;
-                        System.out.println(time);
-                        System.exit(0);
+            //상근이 이동
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int[] temp = queue.poll();
+                int x = temp[0];
+                int y = temp[1];
+                int time = temp[2];
+
+                for (int j = 0; j < 4; j++) {
+                    int cx = x + dx[j];
+                    int cy = y + dy[j];
+
+                    if (cx < 0 || cx >= h || cy < 0 || cy >= w) { //밖을 벗어났다면
+                        return time + 1; //탈출 성공, 0초에서 시작했기 때문에 + 1
                     }
 
-                    if (array[cx][cy] != '.' || visited[cx][cy]) {
-                        continue;
+                    if (array[cx][cy] == '.' && !visited[cx][cy]) { //빈공간이고 방문하지 않았다면
+                        visited[cx][cy] = true; //방문 처리를 해줘야 최단 거리를 구할 수 있다.
+                        queue.add(new int[]{cx, cy, time + 1});
                     }
-                    visited[cx][cy] = true;
-                    queue.add(new int[]{cx, cy});
                 }
             }
-            time++;
         }
+
+        return -1; // 탈출 실패
     }
 }
 
