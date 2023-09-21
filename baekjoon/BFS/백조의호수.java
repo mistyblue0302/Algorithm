@@ -76,7 +76,7 @@ public class 백조의호수 {
 
                     visited[cx][cy] = true;
                     if (array[cx][cy] == 'X') { //빙판이라면 next 큐에 넣는다.
-                        next.add(new int[]{cx, cy}); //next 큐에 들어간 지역들은 다음 날 얼음이 녹아 다음 탐색의 시작점이 된다.
+                        next.add(new int[]{cx, cy}); //next 큐에 들어간 지역들은 다음 날 빙판이 녹아 다음 탐색의 시작점이 된다.
                         continue;
                     }
                     queue.add(new int[]{cx, cy}); //빙판이 아니라면 탐색 가능 큐에 넣는다.
@@ -87,8 +87,8 @@ public class 백조의호수 {
                 break;
             }
 
-            queue = next; //만약 탐색 큐를 다 탐색했는데도 만나지 못했다면, 다음 날 탐색 할 지역이 담긴 큐로 바꾼다.
-            int size = water.size(); //얼음을 녹인다
+            queue = next; //만약 탐색 큐를 다 탐색했는데도 만나지 못했다면, 빙판이 담긴 큐로 바꾼다.
+            int size = water.size(); //물이 퍼져나가는 것을 처리하기 위해
             for (int i = 0; i < size; i++) {
                 int[] now = water.poll();
                 x = now[0];
@@ -102,8 +102,8 @@ public class 백조의호수 {
                         continue;
                     }
 
-                    if (array[cx][cy] == 'X') { //물이 녹았고, 물에 인접한 빙판을 발견하면 녹이고 큐에 넣는다.
-                        array[cx][cy] = '.'; //물이 녹았으므로 물 공간으로 처리
+                    if (array[cx][cy] == 'X') { //물에 인접한 빙판을 발견하면 녹이고 큐에 넣는다.
+                        array[cx][cy] = '.'; //물 공간으로 처리
                         water.add(new int[]{cx, cy});
                     }
                 }
