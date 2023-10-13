@@ -18,7 +18,7 @@ public class 팰린드롬 {
         }
 
         int m = Integer.parseInt(br.readLine());
-        boolean[][] dp = new boolean[n][n];
+        boolean[][] dp = new boolean[n][n]; //n부터 n까지 팰린드롬인지 판별하는 배열
 
         //길이가 1인 것은 모두 팰린드롬
         for (int i = 0; i < n; i++) {
