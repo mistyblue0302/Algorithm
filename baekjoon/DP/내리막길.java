@@ -12,7 +12,6 @@ public class 내리막길 {
     static int[] dy = {0, 1, 0, -1};
     static int[][] array;
     static int[][] dp;
-    static int result = 0;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -49,7 +48,8 @@ public class 내리막길 {
                 }
 
                 if (array[cx][cy] < array[x][y]) {
-                    dp[x][y] += dfs(cx, cy); //dfs는 도착지점에 도착하면 1을 리턴하므로 경로를 하나 찾을 때마다 dp[0][0]에 더하게 된다.
+                    dp[x][y] += dfs(cx,
+                        cy); //dfs는 도착지점에 도착하면 1을 리턴하므로 경로를 하나 찾을 때마다 dp[0][0]에 더하게 된다.
                 }
             }
         }
