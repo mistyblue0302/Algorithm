@@ -5,60 +5,62 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    public static int n;
-    public static int tree[][];
-    public static StringBuilder sb = new StringBuilder();
+    static int[][] tree;
+    static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
-        n = Integer.parseInt(br.readLine());
+
+        int n = Integer.parseInt(br.readLine()); //노드 개수
         tree = new int[26][2];
 
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine(), " ");
-            //알파벳에서 'A'를 빼면 숫자
+
+            //A = 65, . = 46
             int parent = st.nextToken().charAt(0) - 'A';
             int left = st.nextToken().charAt(0) - 'A';
             int right = st.nextToken().charAt(0) - 'A';
 
-            //A = 65, . = 46으로 만약 비어있다면 46-65 = -19가 나와야 한다.
-            tree[parent][0] = (left == -19) ? -1 : left;
-            tree[parent][1] = (right == -19) ? -1 : right;
+            tree[parent][0] = (left == -19) ? -1 : left; //만약 트리 왼쪽이 비었다면 -1 저장
+            tree[parent][1] = (right == -19) ? -1 : right; //트리 오른쪽이 비었다면 -1 저장
         }
+
         preOrder(0);
         sb.append('\n');
         inOrder(0);
         sb.append('\n');
-        postOrder(0);;
+        postOrder(0);
+        sb.append('\n');
         System.out.println(sb.toString());
     }
 
-    public static void preOrder(int x) {
-        if (x == -1) {
+    public static void preOrder(int node) {
+        if (node == -1) {
             return;
         }
-        sb.append((char) (x + 'A')); //항상 A가 루트 노드가 되기 때문에
-        preOrder(tree[x][0]); //왼쪽 자식 호출
-        preOrder(tree[x][1]); //오른쪽 자식 호출
+        sb.append((char) (node + 'A'));
+        preOrder(tree[node][0]);
+        preOrder(tree[node][1]);
     }
 
-    public static void inOrder(int x) {
-        if (x == -1) {
+    public static void inOrder(int node) {
+        if (node == -1) {
             return;
         }
-        inOrder(tree[x][0]);
-        sb.append((char) (x + 'A'));
-        inOrder(tree[x][1]);
+        inOrder(tree[node][0]);
+        sb.append((char) (node + 'A'));
+        inOrder(tree[node][1]);
     }
 
-    public static void postOrder(int x) {
-        if (x == -1) {
+    public static void postOrder(int node) {
+        if (node == -1) {
             return;
         }
-        postOrder(tree[x][0]);
-        postOrder(tree[x][1]);
-        sb.append((char)(x + 'A'));
+        postOrder(tree[node][0]);
+        postOrder(tree[node][1]);
+        sb.append((char) (node + 'A'));
     }
 }
