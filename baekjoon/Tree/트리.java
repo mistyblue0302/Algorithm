@@ -62,7 +62,7 @@ public class 트리 {
         System.out.println(sb.toString());
     }
 
-    public static int dfs(int start) {
+    public static int bfs(int start) {
         //트리의 경우 노드개수 = 간선 개수 + 1을 활용한다. 양방향 간선으로 그래프를 구성하였기 때문에
         //node의 개수 = (간선개수 / 2) + 1이면 트리이다.
         Queue<Integer> queue = new LinkedList<>();
