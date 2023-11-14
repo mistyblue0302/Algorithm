@@ -44,7 +44,7 @@ public class 트리 {
 
             for (int i = 1; i <= n; i++) {
                 if (!visited[i]) {
-                    count += dfs(i);
+                    count += bfs(i);
                 }
             }
 
