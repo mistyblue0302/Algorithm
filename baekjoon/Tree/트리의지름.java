@@ -8,19 +8,17 @@ import java.util.StringTokenizer;
 public class 트리의지름 {
 
     static int n;
-
-    static List<int[]> list[];
-    static int max = Integer.MIN_VALUE;
     static boolean[] visited;
+    static List<int[]> list[];
+    static int max = 0;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        n = Integer.parseInt(st.nextToken());
 
-        n = Integer.parseInt(br.readLine());
         list = new ArrayList[n + 1];
-
-        for (int i = 0; i < list.length; i++) {
+        for (int i = 1; i < n + 1; i++) {
             list[i] = new ArrayList<>();
         }
 
@@ -28,30 +26,28 @@ public class 트리의지름 {
             st = new StringTokenizer(br.readLine(), " ");
             int parent = Integer.parseInt(st.nextToken());
             int child = Integer.parseInt(st.nextToken());
-            int value = Integer.parseInt(st.nextToken());
+            int weight = Integer.parseInt(st.nextToken());
 
-            list[parent].add(new int[]{child, value});
-            list[child].add(new int[]{parent, value});  //양방향으로 움직일 수 있으므로
+            list[parent].add(new int[]{child, weight});
+            list[child].add(new int[]{parent, weight});
         }
 
-        for (int i = 1; i < list.length; i++) {
+        for (int i = 1; i <= n; i++) {
             visited = new boolean[n + 1];
-            dfs(i, 0); //지름을 구하기 위해 노드를 다 넣어본다.
+            dfs(i, 0);
         }
         System.out.println(max);
     }
 
-    public static void dfs(int node, int diameter) {
+    public static void dfs(int node, int distance) {
         visited[node] = true;
-        max = Math.max(max, diameter);
+        max = Math.max(max, distance);
 
-        for (int[] a : list[node]) {
-            int child = a[0];
-            int value = a[1];
-
-            if (!visited[child]) {
-                dfs(child, diameter + value);
+        for (int[] array : list[node]) {
+            if (visited[array[0]]) {
+                continue;
             }
+            dfs(array[0], distance + array[1]);
         }
     }
 }
