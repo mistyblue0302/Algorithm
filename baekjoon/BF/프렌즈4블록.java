@@ -18,9 +18,9 @@ public class 프렌즈4블록 {
             //블록을 체크하고 일치하는 블록 표시
             for (int row = 0; row < m - 1; row++) {
                 for (int col = 0; col < n - 1; col++) {
-                    char block = array[row][col];
-                    if (array[row + 1][col] == block && array[row][col + 1] == block
-                        && array[row + 1][col + 1] == block) {
+                    char ch = array[row][col];
+                    if (array[row + 1][col] == ch && array[row][col + 1] == ch
+                        && array[row + 1][col + 1] == ch) {
                         visited[row + 1][col] = true;
                         visited[row][col + 1] = true;
                         visited[row + 1][col + 1] = true;
@@ -45,8 +45,6 @@ public class 프렌즈4블록 {
                 break;
             }
 
-            answer += count;
-
             //블록 내리기
             for (int row = m - 1; row >= 0; row--) {
                 for (int col = 0; col < n; col++) {
@@ -62,6 +60,7 @@ public class 프렌즈4블록 {
                     }
                 }
             }
+            answer += count;
         }
 
         return answer;
