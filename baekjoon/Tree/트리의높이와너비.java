@@ -1,3 +1,5 @@
+package Tree;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -5,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class Main {
+public class 트리의높이와너비 {
 
     public static int n;
     public static int[] levelMin; //각 레벨의 최소 x좌표
@@ -70,7 +72,7 @@ public class Main {
 
         inOrder(rootIndex, 1);
 
-        // 완성된 levelMax[]와 levelMin[]을 가지고 값을 뽑아내기
+        //완성된 levelMax[]와 levelMin[]을 가지고 값을 뽑아내기
         int answerLevel = 1;
         int answerWidth = levelMax[1] - levelMin[1] + 1;
         for (int i = 2; i <= maxLevel; i++) {

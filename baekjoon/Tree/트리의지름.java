@@ -2,25 +2,23 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
-public class Main {
+public class 트리의지름 {
 
-    //지름 : 트리에 존재하는 모든 경로들 중에서 가장 긴 것의 길이, 두 노드를 선택해서 양쪽으로 당길 때, 가장 길게 늘어나는 경우
-
-    public static int n;
-    public static ArrayList<int[]> list[];
-    public static boolean visit[];
-    public static int max;
+    static int n;
+    static boolean[] visited;
+    static List<int[]> list[];
+    static int max = 0;
 
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
-        n = Integer.parseInt(br.readLine()); //노드의 개수
-        list = new ArrayList[n + 1];
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        n = Integer.parseInt(st.nextToken());
 
-        for (int i = 0; i < list.length; i++) {
+        list = new ArrayList[n + 1];
+        for (int i = 1; i < n + 1; i++) {
             list[i] = new ArrayList<>();
         }
 
@@ -34,21 +32,22 @@ public class Main {
             list[child].add(new int[]{parent, weight});
         }
 
-        for (int i = 1; i < list.length; i++) {
-            visit = new boolean[n + 1];
+        for (int i = 1; i <= n; i++) {
+            visited = new boolean[n + 1];
             dfs(i, 0);
         }
         System.out.println(max);
     }
 
-    public static void dfs(int n, int distance) {
-        visit[n] = true;
+    public static void dfs(int node, int distance) {
+        visited[node] = true;
         max = Math.max(max, distance);
 
-        for (int array[] : list[n]) {
-            if (!visit[array[0]]) {
-                dfs(array[0], distance + array[1]);
+        for (int[] array : list[node]) {
+            if (visited[array[0]]) {
+                continue;
             }
+            dfs(array[0], distance + array[1]);
         }
     }
 }
