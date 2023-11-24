@@ -1,4 +1,4 @@
-package BF;
+package Simulation;
 
 class 택배배달과수거하기 {
     public long solution(int cap, int n, int[] deliveries, int[] pickups) {

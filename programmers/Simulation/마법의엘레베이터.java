@@ -1,4 +1,4 @@
-package BF;
+package Simulation;
 
 class 마법의엘레베이터 {
     public int solution(int storey) { //민수가 어떤 층에서 엘리베이터를 타고 0층으로 내려가는데 필요한 마법의 돌의 최소 개수

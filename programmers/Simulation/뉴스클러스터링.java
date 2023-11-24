@@ -1,4 +1,4 @@
-package BF;
+package Simulation;
 
 import java.util.*;
 

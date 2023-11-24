@@ -1,4 +1,6 @@
-class Solution {
+package BF;
+
+class 체육복 {
     public int solution(int n, int[] lost, int[] reserve) {
         int[] people = new int[n];
         int answer = n;
