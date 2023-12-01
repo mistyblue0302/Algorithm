@@ -1,4 +1,6 @@
-class Solution {
+package BF;
+
+class 키패드누르기 {
     public String solution(int[] numbers, String hand) {
       
         StringBuilder sb = new StringBuilder();

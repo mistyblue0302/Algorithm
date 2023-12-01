@@ -1,8 +1,10 @@
+package BF;
+
 import java.util.HashMap;
 
 import java.util.*;
 
-class Solution {
+class 실패율 {
 
     public int[] solution(int N, int[] stages) {
         int[] answer = new int[N];
@@ -29,7 +31,7 @@ class Solution {
         }
 
         List<Integer> list = new ArrayList<>(map.keySet()); //key값으로 리스트 만들기
-        // 실패율 내림차순 정렬(오름차순 일때는 (map.get(o1).compareTo(map.get(o2))));
+        //실패율 내림차순 정렬(오름차순 일때는 (map.get(o1).compareTo(map.get(o2))));
         Collections.sort(list, (o1, o2) -> (map.get(o2).compareTo(map.get(o1))));
 
         int i = 0;

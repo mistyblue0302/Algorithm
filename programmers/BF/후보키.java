@@ -1,6 +1,8 @@
+package BF;
+
 import java.util.*;
 
-class Solution {
+class 후보키 {
     List<Integer> answer = new ArrayList<>(); //후보키 리스트
     
     public int solution(String[][] relation) {
