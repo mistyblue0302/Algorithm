@@ -3,54 +3,60 @@ package DFS;
 import java.util.*;
 
 class 과제진행하기 {
+
     public String[] solution(String[][] plansArr) {
         Plan[] plans = new Plan[plansArr.length];
-        for(int i = 0; i < plansArr.length; i++) {
+        for (int i = 0; i < plansArr.length; i++) {
             plans[i] = new Plan(plansArr[i]);
         }
         Arrays.sort(plans, (a, b) -> a.start - b.start);
 
-        Stack<Plan> stop = new Stack<>();
+        Stack<Plan> stack = new Stack<>();
         List<String> answer = new ArrayList<>();
-        for(int i = 0; i < plans.length - 1; i++) {
-            Plan curPlan = plans[i];
-            Plan nextPlan = plans[i + 1];
+        for (int i = 0; i < plans.length - 1; i++) {
+            Plan current = plans[i];
+            Plan next = plans[i + 1];
 
-            if(curPlan.getEndTime() > nextPlan.start) {
-                curPlan.playTime = curPlan.getEndTime() - nextPlan.start;
-                stop.push(curPlan);
+            if (current.getEndTime() > next.start) {
+                current.playtime = current.getEndTime() - next.start;
+                stack.push(current);
                 continue;
             }
-            answer.add(curPlan.name);
+            answer.add(current.name);
 
-            int restTime = nextPlan.start - curPlan.getEndTime();
-            System.out.println(restTime);
-            while(restTime > 0 && !stop.isEmpty()) {
-                Plan stoppedPlan = stop.peek();
-                int timeDiff = stoppedPlan.playTime - restTime;
-                stoppedPlan.playTime = timeDiff;
-                restTime = timeDiff * -1;
-                if(timeDiff > 0) break;
-                answer.add(stop.pop().name);
+            int restTime = next.start - current.getEndTime();
+
+            while (!stack.isEmpty()) {
+                Plan p = stack.peek();
+                int diff = p.playtime - restTime;
+                p.playtime = diff;
+                restTime = diff * -1;
+                if (diff > 0) {
+                    break;
+                }
+                answer.add(stack.pop().name);
             }
         }
 
-        answer.add(plans[plans.length - 1].name); // 마지막 index의 plan 처리
-        while(!stop.isEmpty()) answer.add(stop.pop().name); // stack에 남아있던 plan들 넣기
+        answer.add(plans[plans.length - 1].name); //마지막 index의 plan 처리
+        while (!stack.isEmpty()) {
+            answer.add(stack.pop().name); // stack에 남아있던 plan들 넣기
+        }
         return answer.toArray(new String[answer.size()]);
     }
 }
 
 class Plan {
+
     String name;
     int start;
-    int playTime;
+    int playtime;
 
-    public Plan(String name, String start, String playTime) {
+    public Plan(String name, String start, String playtime) {
         this.name = name;
         String[] time = start.split(":");
         this.start = Integer.parseInt(time[0]) * 60 + Integer.parseInt(time[1]); // 시간 * 60 + 분
-        this.playTime = Integer.parseInt(playTime);
+        this.playtime = Integer.parseInt(playtime);
     }
 
     public Plan(String[] plan) {
@@ -58,6 +64,6 @@ class Plan {
     }
 
     public int getEndTime() {
-        return start + playTime;
+        return start + playtime;
     }
 }
