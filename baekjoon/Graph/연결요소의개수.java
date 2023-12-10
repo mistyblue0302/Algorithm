@@ -1,6 +1,8 @@
+package Graph;
+
 import java.util.Scanner;
 
-public class Main {
+public class 연결요소의개수 {
 
     public static int n;
     public static int m;
