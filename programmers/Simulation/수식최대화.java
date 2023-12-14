@@ -1,8 +1,8 @@
-package BF;
+package Simulation;
 
 import java.util.*;
 
-class Solution {
+class 수식최대화 {
     public static long solution(String expression) {
         long answer = Long.MIN_VALUE;
         String op[][] = {{"+", "-", "*"}, {"+", "*", "-"}, {"-", "*", "+"},

@@ -1,4 +1,6 @@
-class Solution {
+package BF;
+
+class 숫자문자열과영단어 {
     public int solution(String s) {
         
     	//영단어를 담는 String 타입의 배열 생성

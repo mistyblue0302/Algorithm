@@ -1,6 +1,8 @@
+package BF;
+
 import java.util.*;
 
-class Solution {
+class 크레인인형뽑기게임 {
     public int solution(int[][] board, int[] moves) { //크레인을 모두 작동시킨 후 터트러져 사라진 인형의 개수 int
         int answer = 0;
         
