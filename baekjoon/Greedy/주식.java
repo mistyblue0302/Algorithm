@@ -1,29 +1,36 @@
 package Greedy;
 
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class 주식 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int testcase = sc.nextInt();
-        long ans[] = new long[testcase];
-        for( int n = 0 ; n < testcase ; n++ ) {
-            int days = sc.nextInt();
-            long stocks[] = new long[days];
-            long max = 0;
-            for( int i = 0 ; i < days ; i++ ) {
-                stocks[i] = sc.nextInt();
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+
+        StringTokenizer st;
+        for (int i = 0; i < t; i++) {
+            int day = Integer.parseInt(br.readLine());
+            int[] array = new int[day];
+            st = new StringTokenizer(br.readLine(), " ");
+            for (int j = 0; j < day; j++) {
+                array[j] = Integer.parseInt(st.nextToken());
             }
-            for( int i = days-1 ; i >= 0 ; i-- ) {
-                if(stocks[i] > max) {
-                    max = stocks[i];
-                }else {
-                    ans[n] += (max - stocks[i]);
+
+            long sum = 0;
+            int current = array[day - 1];
+            for (int k = array.length - 2; k >= 0; k--) {
+                int num = array[k];
+                if (num < current) {
+                    sum += current - num;
+                } else {
+                    current = num;
                 }
             }
-        }
-        for( long i : ans) {
-            System.out.println(i);
+            System.out.println(sum);
         }
     }
 }
