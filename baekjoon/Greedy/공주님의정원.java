@@ -18,9 +18,10 @@ public class 공주님의정원 {
             this.end = end;
         }
 
+        // 피는 날짜 오름차순, 피는 날짜가 같다면 종료일은 빠른순
         @Override
         public int compareTo(Flower o) {
-            if (this.start == o.start) { // 피는 날짜가 같으면 종료 날짜를 내림차순으로 비교
+            if (this.start == o.start) { // 피는 날짜가 같으면 종료 날짜를 오름차순으로 비교
                 return this.end - o.end;
             } else { // 피는 날짜가 다르면 피는 날짜를 오름차순으로 비교
                 return this.start - o.start;
@@ -62,7 +63,7 @@ public class 공주님의정원 {
 
                 if (max < flowers[i].end) {
                     isFound = true;
-                    max = flowers[i].end;
+                    max = flowers[i].end; // 종료일이 가장 큰 수를 선택하여 max 갱신
                     index = i + 1;
                 }
             }
