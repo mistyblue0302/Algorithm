@@ -49,7 +49,7 @@ public class 공주님의정원 {
         int endDay = 1201;
         int start = 301;
         int count = 0;
-        int max = 0; // 현재까지 쵀대 종료일
+        int max = 0; // 현재까지 최대 종료일
         int index = 0;
 
         // 현재 종료일이 12월 1일보다 적은 경우만 가능(12월 1일 초과면 이미 조건 만족했기 때문에)
