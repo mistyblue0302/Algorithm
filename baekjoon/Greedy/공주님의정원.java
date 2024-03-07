@@ -54,7 +54,7 @@ public class 공주님의정원 {
 
         // 현재 종료일이 12월 1일보다 적은 경우만 가능(12월 1일 초과면 이미 조건 만족했기 때문에)
         while (start < endDay) {
-            boolean isFound = false; // 새 꽃 찾은지 여부 확인
+            boolean isFound = false; // 새 꽃을 찾았는지 여부 확인
 
             for (int i = index; i < n; i++) {
                 if (flowers[i].start > start) { // 종료일보다 시작일이 이후면 의미없음. 종료일에는 시작해야 이어지기 때문에
