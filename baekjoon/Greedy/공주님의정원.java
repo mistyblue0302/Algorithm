@@ -18,7 +18,6 @@ public class 공주님의정원 {
             this.end = end;
         }
 
-        // 피는 날짜 오름차순, 피는 날짜가 같다면 종료일은 빠른순
         @Override
         public int compareTo(Flower o) {
             if (this.start == o.start) { // 피는 날짜가 같으면 종료 날짜를 오름차순으로 비교
