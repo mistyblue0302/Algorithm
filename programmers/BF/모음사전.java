@@ -2,16 +2,16 @@ package BF;
 
 import java.util.*;
 
-class 모음사전 {
-    static String[] arr = new String[]{"A", "E", "I", "O", "U"};;
-    static List<String> list = new ArrayList<>();;
-
+class Solution {
+    static List<String> list = new ArrayList<>();
+    static String [] words = {"A", "E", "I", "O", "U"};
+    
     public int solution(String word) {
         int answer = 0;
-        recursion(word, "", 0);
-
+        
+        dfs("", 0);
         for (int i = 0; i < list.size(); i++) {
-            if(list.get(i).equals(word)) {
+            if (list.get(i).equals(word)) {
                 answer = i;
                 break;
             }
@@ -19,16 +19,12 @@ class 모음사전 {
         return answer;
     }
 
-
-    public static void recursion(String word, String str, int depth) {
-        list.add(str);
-
-        if(depth == 5) {
-            return;
-        }
-
-        for (int i = 0; i < arr.length; i++) {
-            recursion(word, str + arr[i], depth + 1);
+    public static void dfs(String temp, int length) {
+        list.add(temp);
+        if (length == 5) return;
+        
+        for (int i = 0; i < words.length; i++) {
+            dfs(temp + words[i], length + 1);
         }
     }
 }
