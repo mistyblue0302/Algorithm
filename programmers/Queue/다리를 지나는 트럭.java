@@ -15,8 +15,8 @@ class Solution {
                     sum += truck;
                     break;
                 } else if(queue.size() == bridge_length) {
-					sum -= queue.poll();
-				} else {
+		    sum -= queue.poll();
+		} else {
                     if(truck + sum > weight) {
                         queue.add(0);
                         time++;
