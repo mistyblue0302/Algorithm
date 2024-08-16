@@ -35,7 +35,7 @@ class Solution {
     public boolean isPrime(int number) {
         if(number < 2) return false;
         
-        for(int i = 2; i <= Math.sqrt(number); i++) {  // 시작 인덱스를 2로 변경
+        for(int i = 2; i <= Math.sqrt(number); i++) {  
             if(number % i == 0) {
                 return false;
             }
