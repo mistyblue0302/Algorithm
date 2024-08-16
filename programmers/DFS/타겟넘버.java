@@ -1,22 +1,20 @@
-package DFS;
-
-class 타겟넘버 {
-    static int answer = 0;
+class Solution {
+    int answer = 0;
+    
     public int solution(int[] numbers, int target) {
-
-        dfs(numbers, target, 0, 0);
+    
+        dfs(0, numbers, target, 0);
         return answer;
     }
-
-    public static void dfs(int[] numbers, int target, int index, int sum) {
-
-        if(index == numbers.length) {
-            if(target == sum) {
+    
+    public void dfs(int index, int[] numbers, int target, int current) {
+        if(index == numbers.length) { // 끝까지 연산을 다 수행했을 때
+            if(current == target) {
                 answer++;
             }
         } else {
-            dfs(numbers, target, index + 1, sum + numbers[index]);
-            dfs(numbers, target, index + 1, sum - numbers[index]);
+            dfs(index + 1, numbers, target, current + numbers[index]);
+            dfs(index + 1, numbers, target, current - numbers[index]);
         }
     }
 }
