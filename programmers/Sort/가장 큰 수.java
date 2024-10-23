@@ -2,22 +2,24 @@ import java.util.*;
 
 class Solution {
     public String solution(int[] numbers) {
-        String answer = "";
-        
-        String[] array = new String[numbers.length];
-        for(int i = 0; i < array.length; i++){
-            array[i] = String.valueOf(numbers[i]);
-        }
-        //두 수를 번갈아가며 이어붙인 것을 기준으로 내림차순 비교
-        Arrays.sort(array, (o1, o2) -> (o2 + o1).compareTo(o1 + o2));
-        
-        if(array[0].equals("0")) {
-            return "0"; //만약 입력으로 0,0,0이 들어온다면
+        String[] s = new String[numbers.length];
+        for(int i = 0; i < numbers.length; i++) {
+            s[i] = String.valueOf(numbers[i]);
         }
         
-        for(int i = 0; i < array.length; i++){
-            answer += array[i];
+        // 이어붙였을 때 큰 값이 앞에 오도록 정렬 [9, 5, 34, 3, 30]
+        Arrays.sort(s, (x, y) -> (y + x).compareTo(x + y));
+        
+        // 만약 0밖에 원소가 없을 경우 "000" 등을 방지하기 위해
+        if(s[0].equals("0")) {
+            return "0";
         }
-        return answer;
+        
+        StringBuilder sb = new StringBuilder();
+        for(String str: s) {
+            sb.append(str);
+        }
+        
+        return sb.toString();
     }
 }
