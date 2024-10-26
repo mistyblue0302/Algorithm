@@ -6,6 +6,7 @@ class Solution {
     public String solution(String m, String[] musicinfos) {
         String answer = "(None)";
         
+        map.put("B#", "b"); 
         map.put("C#", "c"); 
         map.put("D#", "d"); 
         map.put("F#", "f");
