@@ -20,7 +20,8 @@ class Solution {
             int time = getTime(s[0], s[1]); 
             String title = s[2]; 
             String melody = change(s[3]); 
-            
+
+            // 음악 길이보다 재생된 시간이 길 때
             while(melody.length() < time) {
                 melody += melody; 
             }
