@@ -29,7 +29,7 @@ class Solution {
             
             // 조건이 일치하는 음악이 여러 개일 때에는 라디오에서 재생된 시간이 제일 긴 음악 제목을 반환
             if(melody.contains(m)) { 
-                if(maxTime < time) {
+                if(maxTime < time) { // 재생시간이 같을 경우 먼저 입력된 음악을 반환하려면 조건 : <
                     maxTime = time;
                     answer = title;
                 }
