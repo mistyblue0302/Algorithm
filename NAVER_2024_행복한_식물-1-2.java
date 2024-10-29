@@ -22,7 +22,7 @@ private static int[] happyFlowers(int[] emotions, int[] orders) {
 		Set<Integer> set = new HashSet<>(); // 상태가 0이 된 식물을 저장
 		
 		// 모든 식물이 한 사이클마다 상태값 1 감소
-		for(Map.entry<Integer, int[]> entry : map.entrySet()) { // 모든 key-value 쌍을 순회
+		for(Map.Entry<Integer, int[]> entry : map.entrySet()) { // 모든 key-value 쌍을 순회
 			int[] states = entry.getValue(); // 식물의 상태 배열, 처음엔 [2,2]
 			if(states[0] > 0) states[0]--; // 현재 상태가 0보다 크다면 상태값 1 감소 	
 		/*											
