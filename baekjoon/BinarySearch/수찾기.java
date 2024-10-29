@@ -15,7 +15,7 @@ public class Main {
             array[i] = Integer.parseInt(st.nextToken());
         }
 
-        Arrays.sort(array); // 1 2 3 4 5
+        Arrays.sort(array); 
 
         int m = Integer.parseInt(br.readLine());
         st = new StringTokenizer(br.readLine(), " ");
