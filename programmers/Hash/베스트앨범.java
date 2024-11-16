@@ -40,7 +40,7 @@ class Solution {
         }
         
         int[] array = new int[answer.size()];
-        for(int i = 0; i < answer.size(); i++){
+        for(int i = 0; i < answer.size(); i++) {
             array[i] = answer.get(i);
         }
         return array;
