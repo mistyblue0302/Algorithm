@@ -7,26 +7,26 @@ class Solution {
         int answer = 0;
         
         Arrays.sort(citations); 
-        int left = 0; 
+        int left = 0;
         int right = citations.length; 
         
-        while(left <= right) { // left가 right를 넘어설 때까지 탐색
+        while(left <= right) {
             int mid = (left + right) / 2; 
-            int count = 0; 
             
+            int count = 0;
             for(int citation : citations) {
-                if(citation >= mid) {
-                    count++;  
+                if (citation >= mid) {
+                    count++;
                 }
             }
             
-            if(count >= mid) {
+            if (count >= mid) {
                 left = mid + 1;
             } else {
                 right = mid - 1;
             }
         }
-        
-        return right;
+
+        return right; 
     }
 }
