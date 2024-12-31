@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Solution {
     public int[] findOceanViewBuildings(int[] heights) {
-        // implementation
         int max = 0;
         List<Integer> list = new ArrayList<>();
 
