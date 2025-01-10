@@ -4,20 +4,15 @@ class Solution {
     public int solution(int[][] sizes) {
         int answer = 0;
         
-        int max = 0;
-        int max2 = 0;
+        int width = 0;
+        int length = 0;
         for(int i = 0; i < sizes.length; i++) {
-            if(sizes[i][0] < sizes[i][1]) {
-                int temp = sizes[i][0];
-                sizes[i][0] = sizes[i][1];
-                sizes[i][1] = temp;
-            }
+            int a = Math.max(sizes[i][0], sizes[i][1]); // 70 
+            int b = Math.min(sizes[i][0], sizes[i][1]); // 30
             
-            max = Math.max(max, sizes[i][0]);
-            max2 = Math.max(max2, sizes[i][1]);
+            width = Math.max(width, a);
+            length = Math.max(length, b);
         }
-        
-        answer = max * max2;
-        return answer;
+        return width * length;
     }
 }
