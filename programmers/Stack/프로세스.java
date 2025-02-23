@@ -4,7 +4,7 @@ class Solution {
     public int solution(int[] priorities, int location) {
         int answer = 0;
         
-        // 자료의 삽입과 삭제가 빈번 -> linkedlist를 활용 : 시간복잡도 O(1)
+        // 자료의 삽입과 삭제가 빈번 -> linkedlist를 활용
         // 인접한 참조만 관리하면 되기 때문에
         Queue<int[]> queue = new LinkedList<>(); // 프로세스 정보와 위치 정보 같이 저장
         int index = 0;
