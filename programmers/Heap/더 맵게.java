@@ -4,7 +4,7 @@ class Solution {
     public int solution(int[] scoville, int K) {
         int answer = 0;
         
-        Queue<Integer> queue = new PriorityQueue<>(); 
+        Queue<Integer> queue = new PriorityQueue<>(); // 3  5 9 10 12, 오름차순
         for(int i = 0; i < scoville.length; i++) {
             queue.add(scoville[i]);
         }
