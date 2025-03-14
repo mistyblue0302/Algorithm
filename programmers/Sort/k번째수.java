@@ -5,16 +5,17 @@ class Solution {
         int[] answer = new int[commands.length];
         
         for(int i = 0; i < commands.length; i++) {
-            int[] command = commands[i]; // 2 5 3
-            int start = command[0] - 1;
+            int[] command = commands[i];
+            int start = command[0];
             int end = command[1];
-            int num = command[2];
+            int index = command[2];
             
-            int[] copy = Arrays.copyOfRange(array, start, end); 
-            Arrays.sort(copy); 
-            answer[i] = copy[num - 1];
+            int copyArray[] = Arrays.copyOfRange(array, start - 1, end);
+            Arrays.sort(copyArray);
+            
+            answer[i] = copyArray[index - 1];
         }
-        
+
         return answer;
     }
 }
