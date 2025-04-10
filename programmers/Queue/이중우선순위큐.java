@@ -2,31 +2,29 @@ import java.util.*;
 
 class Solution {
     public int[] solution(String[] operations) {
-        int[] answer = new int[2]; // 초기 배열 [0,0]
+        int[] answer = new int[2];
         
-        Queue<Integer> minQueue = new PriorityQueue<>(); // 오름차순
-        Queue<Integer> maxQueue = new PriorityQueue<>(Collections.reverseOrder()); // 내림차순
+        PriorityQueue<Integer> minQueue = new PriorityQueue<>();
+        PriorityQueue<Integer> maxQueue = new PriorityQueue<>(Collections.reverseOrder());
+        
         for(int i = 0; i < operations.length; i++) {
-            String[] s = operations[i].split(" "); 
-            int num = Integer.parseInt(s[1]);
+            String[] s = operations[i].split(" "); // [I, 16]
             
             if(s[0].equals("I")) {
-                maxQueue.add(num);
-                minQueue.add(num);
+                minQueue.add(Integer.parseInt(s[1]));
+                maxQueue.add(Integer.parseInt(s[1]));
             } else if(s[0].equals("D")) {
-                if(minQueue.isEmpty() && maxQueue.isEmpty()) {
-                    continue;
-                } 
-                
-                if (num == 1) { 
-                    minQueue.remove(maxQueue.poll()); 
-                } else { 
-                    maxQueue.remove(minQueue.poll()); 
+                if(s[1].equals("1")) {
+                    minQueue.remove(maxQueue.poll());
+                } else if(s[1].equals("-1")) {
+                    maxQueue.remove(minQueue.poll());
                 }
-            }   
+            }
         }
         
-        if(!maxQueue.isEmpty() && !minQueue.isEmpty()) {
+        if(maxQueue.size() == 0 && minQueue.size() == 0) {
+            return answer;
+        } else {
             answer[0] = maxQueue.poll();
             answer[1] = minQueue.poll();
         }
