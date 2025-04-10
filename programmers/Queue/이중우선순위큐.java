@@ -8,7 +8,7 @@ class Solution {
         PriorityQueue<Integer> maxQueue = new PriorityQueue<>(Collections.reverseOrder());
         
         for(int i = 0; i < operations.length; i++) {
-            String[] s = operations[i].split(" "); // [I, 16]
+            String[] s = operations[i].split(" "); 
             
             if(s[0].equals("I")) {
                 minQueue.add(Integer.parseInt(s[1]));
