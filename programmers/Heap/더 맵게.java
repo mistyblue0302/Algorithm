@@ -4,19 +4,20 @@ class Solution {
     public int solution(int[] scoville, int K) {
         int answer = 0;
         
-        Queue<Integer> queue = new PriorityQueue<>(); // 3  5 9 10 12, 오름차순
-        for(int i = 0; i < scoville.length; i++) {
-            queue.add(scoville[i]);
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        for(int s : scoville) {
+            queue.add(s);
         }
-       
+        
         while(true) {
+            // 모든 음식의 스코빌 지수를 K이상으로 만들 수 없는 경우
             if(queue.size() == 1 && queue.peek() < K) return -1;
             if(queue.peek() >= K) break;
             
-            int first = queue.poll();
-            int second = queue.poll();
+            int a = queue.poll();
+            int b = queue.poll();
             
-            int mix = first + (second * 2);
+            int mix = a + (b * 2);
             queue.add(mix);
             answer++;
         }
